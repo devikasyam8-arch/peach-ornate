@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Peach Ornate</title>
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffe4d4;--surface:#fff4ec;--ink:#12302f;--muted:#5d6f6c;--accent:#12302f;--accent-ink:#ffe9d9;--gold:#a8741a;--line:#f0c9b2;--tile:#ffd0b5;--danger:#a3281f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f2321;--surface:#173231;--ink:#ffe4d4;--muted:#a9bdb8;--accent:#ffc8a8;--accent-ink:#12302f;--gold:#e3b25a;--line:#2b4947;--tile:#244543;--danger:#ff8a80;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f2321;--surface:#173231;--ink:#ffe4d4;--muted:#a9bdb8;--accent:#ffc8a8;--accent-ink:#12302f;--gold:#e3b25a;--line:#2b4947;--tile:#244543;--danger:#ff8a80;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Figtree,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+h1,h2,h3,.brand{font-family:"Gilda Display",Georgia,serif;font-weight:400;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:18px clamp(16px,5vw,56px)}
+.brand{font-size:1.6rem}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{background:none;border:0;padding:8px 14px;border-radius:999px;font-weight:600}
+nav button[aria-current="true"]{background:var(--accent);color:var(--accent-ink)}
+.wrap{padding:0 clamp(16px,5vw,56px) 56px;max-width:1200px}
+.hero{padding:clamp(20px,6vw,64px) 0 20px}
+.hero h1{font-size:clamp(2.4rem,8vw,5.5rem);line-height:1;letter-spacing:-.01em;max-width:14ch}
+.hero p{color:var(--muted);max-width:48ch;font-size:1.1rem}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
+.chip{border:2px solid var(--ink);background:none;border-radius:999px;padding:5px 15px;font-weight:600}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.card{background:var(--surface);border-radius:18px;padding:14px;display:flex;flex-direction:column}
+.art{background:var(--tile);border-radius:12px;aspect-ratio:1;display:grid;place-items:center;font-size:4rem}
+.card h3{font-size:1.2rem;margin:12px 0 2px}
+.card p{margin:0 0 12px;color:var(--muted);font-size:.93rem;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.price{font-weight:700;font-size:1.15rem}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:9px 18px;font-weight:700}
+.btn.alt{background:none;color:var(--ink);border:2px solid var(--ink)}
+.btn.sm{padding:5px 12px;font-size:.85rem}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.panel{background:var(--surface);border-radius:18px;padding:clamp(16px,3vw,28px);margin-bottom:18px}
+.panel h2{font-size:1.7rem;margin-bottom:6px}
+label{display:block;font-weight:600;margin:12px 0 4px}
+input,select,textarea{width:100%;background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:9px 12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.two{grid-template-columns:1fr}}
+.msg{min-height:1.4em;margin-top:10px;color:var(--gold);font-weight:600}
+.err{color:var(--danger)}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.stat{background:var(--surface);border-radius:14px;padding:12px 20px}
+.stat b{display:block;font-family:"Gilda Display",Georgia,serif;font-size:2rem;font-weight:400}
+.rec{border-top:1px solid var(--line);padding:12px 0;display:grid;gap:4px}
+.rec small{color:var(--muted)}
+.tabs-scroll{overflow-x:auto}
+#scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s}
+#scrim.on{opacity:1;pointer-events:auto}
+aside{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--surface);transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column;padding:calc(18px + env(safe-area-inset-top,0px)) 18px calc(18px + env(safe-area-inset-bottom,0px));overflow:auto}
+aside.on{transform:none}
+.line{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.line .n{flex:1}
+.q button{width:28px;height:28px;border-radius:50%;border:2px solid var(--ink);background:none;font-weight:700}
+.empty{color:var(--muted);padding:20px 0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Peach Ornate</div>
+  <nav id="nav"></nav>
+</header>
+<main class="wrap" id="app"></main>
+<div id="scrim"></div>
+<aside id="cart" aria-hidden="true"></aside>
+
+<script>
+const R="₹";
+let db=null,isAdmin=false,products=[],orders=[],bookings=[],cart={},tab="shop",filter="All",loaded=false,note="",noteErr=false;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money=n=>R+Number(n||0).toLocaleString("en-IN");
+const ORDER_ST=["new","packed","shipped","delivered","cancelled"],BOOK_ST=["pending","confirmed","done","cancelled"];
+
+function sub(name,cb){
+  const t=setTimeout(()=>{loaded=true;setNote("Store data is taking long to load.",1)},10000);
+  db.collection(name).onSnapshot(s=>{clearTimeout(t);cb(s.docs.map(d=>({...d.data(),id:d.id})));loaded=true;render()},
+    e=>{clearTimeout(t);loaded=true;setNote("Could not load "+name+": "+e.message,1)});
+}
+function setNote(m,e){note=m;noteErr=!!e;render()}
+async function init(){
+  render();
+  try{
+    const user=await claude.use("user");
+    isAdmin=user?!!(await user.canEdit()):false;
+    db=await claude.use("db");
+    if(!db){loaded=true;setNote("Sign in to claude.ai to browse the store.",1);return}
+    sub("products",l=>products=l);
+    if(isAdmin){sub("orders",l=>orders=l.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)));sub("bookings",l=>bookings=l.sort((a,b)=>(a.date||"").localeCompare(b.date||"")))}
+    render();
+  }catch(e){loaded=true;setNote("Store is unavailable right now.",1)}
+}
+
+function render(){
+  const tabs=[["shop","Shop"],["book","Book a visit"]];
+  if(isAdmin)tabs.push(["admin","Admin"]);
+  const n=Object.values(cart).reduce((a,b)=>a+b,0);
+  $("#nav").innerHTML=tabs.map(t=>`<button data-tab="${t[0]}" aria-current="${tab===t[0]}">${t[1]}</button>`).join("")+`<button data-act="cart">Bag (${n})</button>`;
+  const a=$("#app"),scroll=window.scrollY;
+  a.innerHTML=tab==="shop"?shopView():tab==="book"?bookView():adminView();
+  window.scrollTo(0,scroll);
+  renderCart();
+}
+function noteHtml(){return note?`<div class="msg ${noteErr?"err":""}" role="status">${esc(note)}</div>`:""}
+
+function shopView(){
+  const cats=["All",...new Set(products.map(p=>p.cat).filter(Boolean))];
+  const list=products.filter(p=>filter==="All"||p.cat===filter);
+  return `<section class="hero"><h1>Shine that doesn’t fade.</h1><p>Anti-tarnish jewellery, accessories and gift sets. Water-safe, sweat-safe and made to be worn every day.</p></section>
+  <div class="chips">${cats.map(c=>`<button class="chip" data-cat="${esc(c)}" aria-pressed="${c===filter}">${esc(c)}</button>`).join("")}</div>
+  ${noteHtml()}
+  <div class="grid">${list.map(p=>`<article class="card"><div class="art" aria-hidden="true">${esc(p.e||"💍")}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p>
+  <div class="row"><span class="price">${money(p.price)}</span><button class="btn sm" data-add="${esc(p.id)}" ${p.inStock===false?"disabled":""}>${p.inStock===false?"Sold out":"Add to bag"}</button></div></article>`).join("")}</div>
+  ${!list.length?`<p class="empty">${loaded?"No products yet. Check back soon.":"Loading the collection…"}</p>`:""}`;
+}
+
+function bookView(){
+  const today=new Date().toISOString().slice(0,10);
+  const slots=[11,12,13,14,15,16,17,18].map(h=>`<option>${String(h).padStart(2,"0")}:00</option>`).join("");
+  return `<section class="hero"><h1>Book a visit.</h1><p>Pick a gift, get a piece sized, or ask about caring for your jewellery. We’ll confirm your slot by phone.</p></section>
+  <div class="panel"><div class="two"><div><label for="bn">Your name</label><input id="bn" autocomplete="name"></div><div><label for="bp">Phone</label><input id="bp" type="tel" autocomplete="tel"></div></div>
+  <div class="two"><div><label for="bs">What for</label><select id="bs"><option>Gift consultation</option><option>Custom gift set</option><option>Sizing and fitting</option><option>Jewellery care</option></select></div>
+  <div><label for="bd">Date</label><input id="bd" type="date" min="${today}"></div></div>
+  <div class="two"><div><label for="bt">Time</label><select id="bt">${slots}</select></div><div><label for="bm">Notes (optional)</label><input id="bm"></div></div>
+  <p><button class="btn" data-act="book">Request booking</button></p>${noteHtml()}</div>`;
+}
+
+function adminView(){
+  const nNew=orders.filter(o=>o.status==="new").length,nPend=bookings.filter(b=>b.status==="pending").length;
+  const rev=orders.filter(o=>o.status!=="cancelled").reduce((s,o)=>s+(o.total||0),0);
+  const sel=(opts,v,id,kind)=>`<select data-st="${kind}" data-id="${esc(id)}" aria-label="Status">${opts.map(o=>`<option ${o===v?"selected":""}>${o}</option>`).join("")}</select>`;
+  return `<section class="hero"><h1>Admin</h1></section>${noteHtml()}
+  <div class="stats"><div class="stat"><b>${nNew}</b>New orders</div><div class="stat"><b>${nPend}</b>Pending bookings</div><div class="stat"><b>${money(rev)}</b>Order value</div></div>
+  <div class="panel"><h2>Orders</h2>${orders.map(o=>`<div class="rec"><div class="row"><strong>${esc(o.name)} · ${money(o.total)}</strong>${sel(ORDER_ST,o.status,o.id,"orders")}</div>
+  <small>${esc((o.items||[]).map(i=>i.qty+" × "+i.name).join(", "))}</small><small>${esc(o.phone)} · ${esc(o.address)}${o.notes?" · "+esc(o.notes):""}</small></div>`).join("")||'<p class="empty">No orders yet.</p>'}</div>
+  <div class="panel"><h2>Bookings</h2>${bookings.map(b=>`<div class="rec"><div class="row"><strong>${esc(b.date)} ${esc(b.time)} · ${esc(b.name)}</strong>${sel(BOOK_ST,b.status,b.id,"bookings")}</div>
+  <small>${esc(b.service)} · ${esc(b.phone)}${b.notes?" · "+esc(b.notes):""}</small></div>`).join("")||'<p class="empty">No bookings yet.</p>'}</div>
+  <div class="panel"><h2>Menu</h2>
+  <div class="two"><div><label for="pn">Name</label><input id="pn"></div><div><label for="pp">Price (${R})</label><input id="pp" type="number" min="0"></div></div>
+  <div class="two"><div><label for="pc">Category</label><input id="pc" placeholder="Rings, Necklaces, Earrings, Gift sets"></div><div><label for="pe">Emoji</label><input id="pe" value="💍"></div></div>
+  <label for="pd">Description</label><textarea id="pd" rows="2"></textarea>
+  <p><button class="btn" data-act="addp">Add product</button></p>
+  ${products.map(p=>`<div class="rec"><div class="row"><span>${esc(p.e)} <strong>${esc(p.name)}</strong> · ${money(p.price)}</span>
+  <span><button class="btn alt sm" data-stock="${esc(p.id)}">${p.inStock===false?"Mark in stock":"Mark sold out"}</button> <button class="btn alt sm" data-del="${esc(p.id)}">Delete</button></span></div></div>`).join("")}</div>`;
+}
+
+function renderCart(){
+  const ids=Object.keys(cart).filter(id=>products.find(p=>p.id===id));
+  const total=ids.reduce((s,id)=>s+products.find(p=>p.id===id).price*cart[id],0);
+  $("#cart").innerHTML=`<div class="row"><h2>Your bag</h2><button class="btn alt sm" data-act="close" aria-label="Close bag">Close</button></div>`+
+  (ids.length?ids.map(id=>{const p=products.find(x=>x.id===id);return `<div class="line"><span style="font-size:1.8rem">${esc(p.e)}</span><div class="n"><strong>${esc(p.name)}</strong><br>${money(p.price)}</div><div class="q"><button data-q="-1" data-id="${esc(id)}" aria-label="Remove one">−</button> ${cart[id]} <button data-q="1" data-id="${esc(id)}" aria-label="Add one">+</button></div></div>`}).join("")+
+  `<div class="row" style="padding:12px 0"><strong>Total</strong><span class="price">${money(total)}</span></div>
+  <label for="on">Name</label><input id="on" autocomplete="name"><label for="op">Phone</label><input id="op" type="tel" autocomplete="tel">
+  <label for="oa">Delivery address</label><textarea id="oa" rows="2" autocomplete="street-address"></textarea><label for="oo">Notes (gift message, etc.)</label><input id="oo">
+  <p><button class="btn" style="width:100%" data-act="order">Place order</button></p>`:`<p class="empty">Your bag is empty.</p>`)+`<div class="msg ${noteErr?"err":""}" id="cm" role="status"></div>`;
+}
+function toggleCart(on){$("#cart").classList.toggle("on",on);$("#scrim").classList.toggle("on",on);$("#cart").setAttribute("aria-hidden",!on)}
+
+async function save(coll,id,data){
+  if(!db)throw new Error("Not connected");
+  await db.collection(coll).doc(id).set(data);
+}
+const val=id=>($("#"+id)?.value||"").trim();
+
+document.addEventListener("click",async e=>{
+  const t=e.target.closest("button");if(!t)return;
+  const d=t.dataset;
+  if(d.tab){tab=d.tab;note="";render();return}
+  if(d.cat){filter=d.cat;render();return}
+  if(d.add){cart[d.add]=(cart[d.add]||0)+1;render();toggleCart(true);return}
+  if(d.q){cart[d.id]+=+d.q;if(cart[d.id]<=0)delete cart[d.id];render();return}
+  if(d.act==="cart"){toggleCart(true);return}
+  if(d.act==="close"){toggleCart(false);return}
+  try{
+    if(d.act==="order"){
+      const items=Object.keys(cart).map(id=>{const p=products.find(x=>x.id===id);return p&&{id,name:p.name,price:p.price,qty:cart[id]}}).filter(Boolean);
+      const o={name:val("on"),phone:val("op"),address:val("oa"),notes:val("oo")};
+      const cm=$("#cm");
+      if(!items.length||!o.name||!o.phone||!o.address){cm.textContent="Please add your name, phone and delivery address.";cm.className="msg err";return}
+      cm.textContent="Placing order…";
+      const id="o"+Date.now();
+      await save("orders",id,{...o,items,total:items.reduce((s,i)=>s+i.price*i.qty,0),status:"new",createdAt:Date.now()});
+      cart={};render();$("#cm").textContent="Order placed. We’ll call you to confirm payment and delivery.";$("#cm").className="msg";
+    }
+    if(d.act==="book"){
+      const b={name:val("bn"),phone:val("bp"),service:val("bs"),date:val("bd"),time:val("bt"),notes:val("bm")};
+      if(!b.name||!b.phone||!b.date){setNote("Please add your name, phone and a date.",1);return}
+      await save("bookings","b"+Date.now(),{...b,status:"pending",createdAt:Date.now()});
+      tab="book";setNote("Request sent. We’ll confirm your slot by phone.");
+    }
+    if(d.act==="addp"){
+      const name=val("pn"),price=Number(val("pp"));
+      if(!name||!(price>=0)||!val("pp")){setNote("Add a name and a price.",1);return}
+      await save("products","p"+Date.now(),{name,price,cat:val("pc")||"Other",e:val("pe")||"💍",desc:val("pd"),inStock:true});
+      setNote("Product added.");
+    }
+    if(d.stock){const p=products.find(x=>x.id===d.stock);await db.collection("products").doc(d.stock).update({inStock:p.inStock===false})}
+    if(d.del){if(t.dataset.sure){await db.collection("products").doc(d.del).delete()}else{t.dataset.sure=1;t.textContent="Confirm delete"}}
+  }catch(err){
+    setNote("That didn’t save: "+(err.message||"please try again")+". Make sure you’re signed in.",1);
+    const cm=$("#cm");if(cm){cm.textContent="Could not place the order. Please try again.";cm.className="msg err"}
+  }
+});
+document.addEventListener("change",async e=>{
+  const s=e.target.closest("select[data-st]");if(!s)return;
+  try{await db.collection(s.dataset.st).doc(s.dataset.id).update({status:s.value})}catch(err){setNote("Couldn’t update status.",1)}
+});
+$("#scrim").onclick=()=>toggleCart(false);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")toggleCart(false)});
+init();
+</script>
+</body>
+</html>
